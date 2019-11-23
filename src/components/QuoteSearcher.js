@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Quote from "./Quote";
+import LikeCounter from "./LikeCounter";
+import DislikeCounter from "./DislikeCounter";
 
 class QuoteSearcher extends Component {
   state = {
@@ -20,6 +22,7 @@ class QuoteSearcher extends Component {
       <div className="quote-searcher">
         <h1>Quotes</h1>
         {this.state.fetching === false && "Loading..."}
+        <LikeCounter /> / <DislikeCounter />
         {this.state.quotes.map(quote => (
           <Quote
             text={quote.quoteText}
