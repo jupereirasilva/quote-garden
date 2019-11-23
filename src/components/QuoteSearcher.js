@@ -8,14 +8,16 @@ class QuoteSearcher extends Component {
     quotes: [],
     fetching: false,
     dislikeCounter: 0,
-    likeCounter: 0
+    likeCounter: 0,
+    searchValue: ""
   };
 
-  componentDidMount() {
-    fetch("https://quote-garden.herokuapp.com/quotes/search/tree")
+  fetchData(search) {
+    this.setState({ fetching: true, dislikeCounter: 0, likeCounter: 0 });
+    fetch(`https://quote-garden.herokuapp.com/quotes/search/${search}`)
       .then(res => res.json())
       // .then(data => console.log("This data?", data))
-      .then(json => this.setState({ quotes: json.results, fetching: true }))
+      .then(json => this.setState({ quotes: json.results, fetching: false }))
       .catch(console.error);
   }
 
@@ -49,7 +51,20 @@ class QuoteSearcher extends Component {
     return (
       <div className="quote-searcher">
         <h1>Quotes</h1>
-        {this.state.fetching === false ? (
+        <div>
+          <input
+            value={this.state.searchValue}
+            onChange={e => {
+              this.setState({
+                searchValue: e.target.value
+              });
+            }}
+          />
+          <button onClick={() => this.fetchData(this.state.searchValue)}>
+            search
+          </button>
+        </div>
+        {this.state.fetching === true ? (
           "Loading..."
         ) : (
           <div
