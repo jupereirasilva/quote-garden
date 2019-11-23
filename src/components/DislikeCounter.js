@@ -1,21 +1,15 @@
 import React, { Component } from "react";
 
 class DislikeCounter extends Component {
-  state = {
-    numDislikes: 0
-  };
-
-  increment = () => {
-    this.state({
-      numDislikes: this.state.numDislikes + 1
-    });
-  };
-
   render() {
     return (
-      <div>
+      <div
+        style={{
+          margin: "0 10px"
+        }}
+      >
         <p>
-          Disliked: <b>{this.state.numDislikes}</b>
+          Disliked: <b>{this.props.dislikeCounter}</b>
         </p>
       </div>
     );
