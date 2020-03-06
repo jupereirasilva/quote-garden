@@ -56,7 +56,7 @@ class Quote extends Component {
           {this.props.text}
         </p>
         <p className="author">By: {this.props.author}</p>
-        <button onClick={this.liked.bind(this)} className="thumbsUp">
+        <button onClick={() => this.liked()} className="thumbsUp">
           <i class="fas fa-thumbs-up"></i>
         </button>
         <button onClick={this.disliked.bind(this)} className="thumbsDown">
